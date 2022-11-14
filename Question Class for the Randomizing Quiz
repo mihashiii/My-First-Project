@@ -1,0 +1,32 @@
+// Question class for the Randomizing Quiz
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Question {
+    private String questions;
+    private ArrayList<String> choices;
+    private String answers;
+
+    public Question(String questions, String[] choices, String answers) {
+
+        this.questions = questions;
+        this.choices = new ArrayList<String>();
+
+        for (int i = 0; i < choices.length; i++) {
+            this.choices.add(choices[i]);
+        }
+        Collections.shuffle(this.choices);
+        this.answers = answers;
+
+    }
+
+public String getQuestions() {
+    return questions;
+}
+public ArrayList<String> getChoices () {
+       return choices;
+}public String getAnswers () {
+        return answers;
+    }
+}
