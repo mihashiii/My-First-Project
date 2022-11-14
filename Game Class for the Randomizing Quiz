@@ -1,0 +1,97 @@
+// Game class for the Randomizing Quiz
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Game {
+    private ArrayList<Question> setQuestions;
+    Random rand = new Random();
+
+
+    public Game() {
+        setQuestions = new ArrayList<Question>();
+        String q = "Who is the first president of the Philippines?";
+        String[] a = {"Rodrigo Duterte", "Emilio Aguinaldo", "Cory Aquino"};
+        setQuestions.add(new Question(q, a, "Emilio Aguinaldo"));
+
+        // need ng new String [] if gagamitin ulit ung variable a.
+        q = "When is Philippine independence day?";
+        a = new String[]{"August 12", "July 12", "June 12"};
+        setQuestions.add(new Question(q, a, "June 12"));
+
+        q = "Who's the National hero of the Philippines?";
+        a = new String[]{"Arthur Nery", "Jose Rizal", "Jose Manalo"};
+        setQuestions.add(new Question(q, a, "Jose Rizal"));
+
+        q = "What is the capital of the Philippines?";
+        a = new String[]{"Bulacan", "Baguio", "Manila"};
+        setQuestions.add(new Question(q, a, "Manila"));
+
+        q = "What is the capital of Bulacan?";
+        a = new String[]{"Pulilan", "Malolos", "Baliuag"};
+        setQuestions.add(new Question(q, a, "Malolos"));
+
+        q = "Which country in this list first invaded Philippines?";
+        a = new String[]{"USA", "Japan", "Spain"};
+        setQuestions.add(new Question(q, a, "Spain"));
+
+        q = "Who is the founder of Katipunan?";
+        a = new String[]{"Apolinario Mabini", "Andres Bonifacio", "Gregorio Del Pilar"};
+        setQuestions.add(new Question(q, a, "Andres Bonifacio"));
+
+        q = "The national anthem of the Philippines";
+        a = new String[]{"Sun and Moon", "Bayang Hinirang", "Lupang Hinirang"};
+        setQuestions.add(new Question(q, a, "Lupang Hinirang"));
+
+        q = "Who's the younger brother of Heneral Luna";
+        a = new String[]{"Juan Luna", "Jose Rizal", "Diego Silang"};
+        setQuestions.add(new Question(q, a, "Juan Luna"));
+
+        q = "What book did Jose Rizal wrote?";
+        a = new String[]{"Donquixote", "Ulysses", "Noli Me Tangere"};
+        setQuestions.add(new Question(q, a, "Noli Me Tangere"));
+
+        Collections.shuffle(setQuestions, new Random());
+
+
+    }
+
+    public void start() {
+
+
+        Scanner sc = new Scanner(System.in);
+        int correctNum = 0;
+
+
+
+
+
+        for (int question = 0; question < setQuestions.size(); question++) {
+            System.out.println(setQuestions.get(question).getQuestions());
+            int choicesNum = setQuestions.get(question).getChoices().size();
+
+            for (int choices = 0; choices < choicesNum; choices++) {
+                System.out.println((choices + 1) + ": " +
+                        setQuestions.get(question).getChoices().get(choices));
+
+            }
+
+            int PAnswer = sc.nextInt();
+            ArrayList<String> setChoice =
+                    setQuestions.get(question).getChoices();
+            String correctAnswer = setQuestions.get(question).getAnswers();
+            int correctAnswerInd = setChoice.indexOf(correctAnswer);
+
+            if (PAnswer == correctAnswerInd + 1) {
+                correctNum++;
+            }
+        }
+
+        sc.close();
+        System.out.println("You got " + correctNum + " out of 10");
+
+    }
+}
